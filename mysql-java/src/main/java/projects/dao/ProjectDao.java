@@ -114,6 +114,9 @@ public class ProjectDao extends DaoBase {
 				project.getMaterials().addAll(fetchMaterialsForProject(conn, projectId));
 				project.getCategories().addAll(fetchCategoriesForProject(conn, projectId));
 		//		project.getSteps().addAll(fetchStepsForProject(conn, projectId)); Creating the step is causing an error, so this is commented out for now. 
+		//		The error is that steps cannot be added. I went through a debugging routine and identified that the error was being thrown during the fetchStepsForProject method. The error is as follows: 
+		//		Error: projects.exception.DbException: provided.util.DaoBase$DaoException: Unable to create object of type projects.entity.Step Try again.
+		//		However, I was unable to identify why this error is occurring. The method is the same as fetchCategoriesForProject that works (but with minor changes to make it for steps). Yet it is not working. 
 			}
 			
 			commitTransaction(conn);//commits the transaction
