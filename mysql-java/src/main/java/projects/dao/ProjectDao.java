@@ -30,10 +30,10 @@ public class ProjectDao extends DaoBase {
 
 	public Project insertProject(Project project) {
 		//@formatter:off 
-		String sql = "" //this sql String gives the sql lanugage that will be used to communicate with the database 
+		String sql = " " //this sql String gives the sql lanugage that will be used to communicate with the database 
 		+ "INSERT INTO " + PROJECT_TABLE + "" 
 		+ "(project_name, estimated_hours, actual_hours, difficulty, notes) "
-		+ "VALUES"
+		+ "VALUES "
 		+ "(?, ?, ?, ?, ?)"; //? is a placeholder for sql 
 		//@formatter:on
 
@@ -113,7 +113,7 @@ public class ProjectDao extends DaoBase {
 			if (Objects.nonNull(project)) {//checks if the project is null and gets the materials, categories, and steps for the project 
 				project.getMaterials().addAll(fetchMaterialsForProject(conn, projectId));
 				project.getCategories().addAll(fetchCategoriesForProject(conn, projectId));
-		//		project.getSteps().addAll(fetchStepsForProject(conn, projectId)); Creating the step is causing an error, so this is commented out for now. 
+		//		project.getSteps().addAll(fetchStepsForProject(conn, projectId)); //Creating the step is causing an error, so this is commented out for now. 
 		//		The error is that steps cannot be added. I went through a debugging routine and identified that the error was being thrown during the fetchStepsForProject method. The error is as follows: 
 		//		Error: projects.exception.DbException: provided.util.DaoBase$DaoException: Unable to create object of type projects.entity.Step Try again.
 		//		However, I was unable to identify why this error is occurring. The method is the same as fetchCategoriesForProject that works (but with minor changes to make it for steps). Yet it is not working. 
