@@ -32,7 +32,7 @@ CREATE TABLE step (
 	step_id INT AUTO_INCREMENT NOT NULL, --primary keys are auto incremented 
 	project_id INT NOT NULL, 
 	step_text TEXT NOT NULL, 
-	step_order TEXT NOT NULL,
+	step_order INT NOT NULL,
 	PRIMARY KEY(step_id),--primary key is identified 
 	FOREIGN KEY (project_id) REFERENCES project (project_id) ON DELETE CASCADE --foreign key is identified 
 );
